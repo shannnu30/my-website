@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login Form</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, skyblue, midnightblue);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.form{
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.form h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: blue;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: linear-gradient(to right, blue, cyan);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.note {
+  font-size: 12px;
+  color: gray;
+}
+label {
+  font-size: 12px;
+  display: block;
+  margin-top: 8px;
+}
+.link {
+  font-size: 12px;
+  color: deepskyblue;
+  float: right;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+  </style>
+</head>
+<body>
+  <div class="container" id="authSection">
+    <form class="form">
+      <h2>SIGN UP</h2>
+      <input type="text" placeholder="First Name" />
+      <input type="text" placeholder="Last Name" />
+      <input type="email" placeholder="Email" />
+      <input type="tel" placeholder="Phone Number" />
+      <p class="note">Your password is 8-20 characters, includes one letter and one number</p>
+      <input type="password" placeholder="Password" />
+      <input type="password" placeholder="Confirm Password" />
+      <label><input type="checkbox" /> I agree to the <a href="#">Terms of Service & Privacy Policy</a></label>
+      <button class="button" type="submit">CREATE AN ACCOUNT</button>
+    </form>
+    <form class="form" id="signInForm">
+      <h2>SIGN IN</h2>
+      <input type="email" id="signinEmail" placeholder="Email" />
+      <input type="password" id="signinPassword" placeholder="Password" />
+      <label><input type="checkbox" /> Remember</label>
+      <a href="#" class="link">Forget your password?</a>
+      <button class="button" id="signInBtn">SIGN IN</button>
+      <p>New Member? <a href="#">Create Account</a></p>
+    </form>
+  </div>
+  <div id="contentSection" style="display: none; text-align: center; width: 100%;">
+    <h2 style="color:white;">Welcome, You are Logged In!</h2>
+    <p style="color:white;">This is your dashboard content. You can now access features.</p>
+    <button class="button" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    document.getElementById("signInBtn").addEventListener("click", function (e) {
+      e.preventDefault(); 
+      const email = document.getElementById("signinEmail").value.trim();
+      const password = document.getElementById("signinPassword").value.trim();
+      if (email === "" || password === "") {
+        alert("Please enter both Email and Password to continue.");
+      } else {
+        document.getElementById("authSection").style.display = "none";
+        document.getElementById("contentSection").style.display = "block";
+      }
+    });
+    function logout() {
+      document.getElementById("contentSection").style.display = "none";
+      document.getElementById("authSection").style.display = "flex";
+      document.getElementById("signinEmail").value = "";
+      document.getElementById("signinPassword").value = "";
+    }
+  </script>
+
+</body>
+</html>
